@@ -1,23 +1,28 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using USER.WebApi.Domain.Models;
 using USER.WebApi.Domain.Repository;
 using USER.WebApi.Domain.Services;
+using USER.WebApi.DTOs.User;
 
 namespace USER.WebApi.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRespository;
-        public UserService(IUserRepository userRepository)
+        private readonly IMapper _mapper;
+        public UserService(IUserRepository userRepository, IMapper mapper)
         {
             _userRespository = userRepository;
+            _mapper = mapper;
         }
 
-        public void Create(User user)
+        public void Create(UserDTO userDto)
         {
+            var user = _mapper.Map<User>(userDto);
             _userRespository.Create(user);
         }
 
@@ -26,9 +31,10 @@ namespace USER.WebApi.Services
             throw new NotImplementedException();
         }
 
-        public User UserInfo()
+        public UserInfoDTO UserInfo()
         {
-            return _userRespository.UserInfo();
+            var user = _userRespository.UserInfo();
+            return _mapper.Map<UserInfoDTO>(user);
         }
     }
 }

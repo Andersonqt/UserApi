@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.Language;
+using USER.WebApi.Domain;
 using USER.WebApi.Domain.Models;
 using USER.WebApi.Domain.Services;
+using USER.WebApi.DTOs.User;
+using USER.WebApi.DTOs.Validators;
+using static USER.WebApi.Domain.Enums;
 
 namespace USER.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : MainController
     {
         private readonly IUserService _userService;
 
@@ -22,7 +28,7 @@ namespace USER.WebApi.Controllers
 
         // GET: api/User
         [HttpGet("me")]
-        public ActionResult<object> Get()
+        public ActionResult<UserInfoDTO> Get()
         {
             return Ok(_userService.UserInfo());
         }
@@ -36,10 +42,14 @@ namespace USER.WebApi.Controllers
 
         // POST: api/User
         [HttpPost]
-        public ActionResult Post([FromBody] User user)
+        public ActionResult Post([FromBody] UserDTO user)
         {
+            UserDtoValidator validator = new UserDtoValidator();
+            ValidationResult result = validator.Validate(user);
+            if (!result.IsValid) return CustomResponse(result.Errors);
+
             _userService.Create(user);
-            return Ok("Usuário criado");
+            return CustomResponse();
         }
 
         // PUT: api/User/5

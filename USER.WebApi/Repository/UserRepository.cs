@@ -18,6 +18,7 @@ namespace USER.WebApi.Repository
         }
         public void Create(User entity)
         {
+            entity.Created_At = DateTime.Now;
             _context.User.Add(entity);
             _context.SaveChanges();
         }
@@ -34,6 +35,7 @@ namespace USER.WebApi.Repository
 
         public User UserInfo()
         {
+            var users = _context.User.Include(x => x.Phones).ToList();
             var user = _context.User.Include(x => x.Phones).FirstOrDefault();
             return user;
         }

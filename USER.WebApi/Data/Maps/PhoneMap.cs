@@ -16,7 +16,7 @@ namespace USER.WebApi.Data.Maps
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
             #region Relationship
-            builder.HasOne(x => x.User).WithMany(x => x.Phones).HasForeignKey(x => x.UserId);
+            builder.HasOne<User>().WithMany(x => x.Phones).HasForeignKey(x => x.UserId);
             #endregion
         }
     }

@@ -108,5 +108,11 @@ C:\Users\Ryslania\Documents\Projetos\UserApi\USER.WebApi\bin\Debug\netcoreapp3.1
 C:\Users\Ryslania\Documents\Projetos\UserApi\USER.WebApi\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Ryslania\Documents\Projetos\UserApi\USER.WebApi\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Ryslania\Documents\Projetos\UserApi\USER.WebApi\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\Ryslania\Documents\Projetos\UserApi\USER.WebApi\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\Ryslania\Documents\Projetos\UserApi\USER.WebApi\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Ryslania\Documents\Projetos\UserApi\USER.WebApi\bin\Debug\netcoreapp3.1\FluentValidation.dll
+C:\Users\Ryslania\Documents\Projetos\UserApi\USER.WebApi\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
+C:\Users\Ryslania\Documents\Projetos\UserApi\USER.WebApi\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\Ryslania\Documents\Projetos\UserApi\USER.WebApi\obj\Debug\netcoreapp3.1\USER.WebApi.csproj.CoreCompileInputs.cache
+C:\Users\Ryslania\Documents\Projetos\UserApi\USER.WebApi\obj\Debug\netcoreapp3.1\USER.WebApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Ryslania\Documents\Projetos\UserApi\USER.WebApi\obj\Debug\netcoreapp3.1\USER.WebApi.MvcApplicationPartsAssemblyInfo.cache
