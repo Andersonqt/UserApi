@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.Language;
@@ -28,20 +29,21 @@ namespace USER.WebApi.Controllers
 
         // GET: api/User
         [HttpGet("me")]
-        public ActionResult<UserInfoDTO> Get()
+        public ActionResult Get()
         {
-            return Ok(_userService.UserInfo());
+            return CustomResponse(_userService.UserInfo());
         }
 
         // GET: api/User/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //[HttpGet("{id}", Name = "Get")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
         // POST: api/User
         [HttpPost("signup")]
+        [AllowAnonymous]
         public ActionResult Post([FromBody] UserDTO user)
         {
             UserDtoValidator validator = new UserDtoValidator();
@@ -50,16 +52,26 @@ namespace USER.WebApi.Controllers
             return CustomResponse(_userService.Create(user));
         }
 
-        // PUT: api/User/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPost("/signin")]
+        [AllowAnonymous]
+        public ActionResult Login([FromBody] UserLoginDTO user)
         {
+            UserLoginDtoValidator validator = new UserLoginDtoValidator();
+            ValidationResult result = validator.Validate(user);
+            if (!result.IsValid) return CustomResponse(result.Errors);
+            return CustomResponse(_userService.SignIn(user.Email, user.Password));
         }
 
+        //// PUT: api/User/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
+
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

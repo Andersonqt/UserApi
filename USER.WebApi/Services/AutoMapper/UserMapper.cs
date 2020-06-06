@@ -14,9 +14,9 @@ namespace USER.WebApi.Services.AutoMapper
         {
             CreateMap<UserDTO, User>();
             CreateMap<PhoneDTO, Phone>();
-
             CreateMap<User, UserInfoDTO>()
                 .ForMember(dest => dest.Created_At, opts => opts.MapFrom(src => src.Created_At.Value.ToString("dd/MM/yyyy HH:mm:ss")));
+            CreateMap<User, UserSignInDTO>();
             CreateMap<Phone, UserPhoneInfoDTO>();
         }
     }

@@ -11,7 +11,7 @@ namespace USER.WebApi.Domain.Services
     public interface IUserService
     {
         ResponseModel Create(UserDTO user);
-        UserInfoDTO UserInfo();
-        User SignIn(string email, string password);
+        ResponseModel UserInfo();
+        ResponseModel SignIn(string email, string password);
     }
 }

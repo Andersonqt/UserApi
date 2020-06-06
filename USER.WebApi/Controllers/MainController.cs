@@ -24,6 +24,7 @@ namespace USER.WebApi.Controllers
             if (obj is ResponseModel)
             {
                 var resp = (ResponseModel)obj;
+                //resp.Success
                 if (resp.ErrorCode.HasValue)
                 {
                     return BadRequest(new
@@ -31,9 +32,10 @@ namespace USER.WebApi.Controllers
                         errorCode = resp.ErrorCode,
                         message = resp.Message
                     });
-                } else
+                }
+                else
                 {
-                    return Ok(resp.Data);
+                    return Ok(new { resp.Data, message = resp.Message });
                 }
                 
             }

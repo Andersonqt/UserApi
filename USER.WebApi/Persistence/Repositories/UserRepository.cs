@@ -37,7 +37,19 @@ namespace USER.WebApi.Persistence.Repositories
 
         public User SignIn(string email, string password)
         {
-            throw new NotImplementedException();
+            var user = _context.User.AsNoTracking().Where(x => x.Email.Equals(email) && x.Password.Equals(password)).FirstOrDefault();
+            if (user != null)
+            {
+                UpdateLastLogin(user.Id);
+            }
+            return user;
+        }
+
+        private void UpdateLastLogin(Guid id)
+        {
+            var user = _context.User.Where(x => x.Id.Equals(id)).FirstOrDefault();
+            user.Last_Login = DateTime.Now;
+            _context.SaveChanges();
         }
 
         public User UserInfo()

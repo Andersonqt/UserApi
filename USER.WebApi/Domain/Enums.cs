@@ -20,7 +20,8 @@ namespace USER.WebApi.Domain
             EAE = 3,
             [Description("Unexpected error")]
             UNE = 4,
-
+            [Description("Invalid e-mail or password")]
+            IEP = 5
         }
         public static string GetEnumDescription(this Enum enumValue)
         {
