@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using USER.WebApi.Domain.Models;
-using USER.WebApi.Domain.Repository;
+using USER.WebApi.Domain.Repositories;
 using USER.WebApi.Domain.Services;
+using USER.WebApi.DTOs;
 using USER.WebApi.DTOs.User;
+using static USER.WebApi.Domain.Enums;
 
 namespace USER.WebApi.Services
 {
@@ -20,10 +22,14 @@ namespace USER.WebApi.Services
             _mapper = mapper;
         }
 
-        public void Create(UserDTO userDto)
+        public ResponseModel Create(UserDTO userDto)
         {
+            if (EmailAlreadyExists(userDto.Email))
+            {
+                return new ResponseModel(errorCode: (int)ErrorCode.EAE, message: ErrorCode.EAE.GetEnumDescription());
+            }
             var user = _mapper.Map<User>(userDto);
-            _userRespository.Create(user);
+            return new ResponseModel(_userRespository.Create(user));
         }
 
         public User SignIn(string email, string password)
@@ -35,6 +41,11 @@ namespace USER.WebApi.Services
         {
             var user = _userRespository.UserInfo();
             return _mapper.Map<UserInfoDTO>(user);
+        }
+
+        private bool EmailAlreadyExists(string email)
+        {
+            return _userRespository.CheckEmailExists(email);
         }
     }
 }

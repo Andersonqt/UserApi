@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using USER.WebApi.Domain.Models;
 
-namespace USER.WebApi.Data.Maps
+namespace USER.WebApi.Persistence.Maps
 {
     public class PhoneMap : IEntityTypeConfiguration<Phone>
     {

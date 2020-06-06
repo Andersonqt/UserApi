@@ -6,12 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using USER.WebApi.Data.Context;
-using USER.WebApi.Domain.Repository;
+using USER.WebApi.Domain.Repositories;
 using USER.WebApi.Domain.Services;
 using USER.WebApi.DTOs.User;
 using USER.WebApi.DTOs.Validators;
-using USER.WebApi.Repository;
+using USER.WebApi.Persistence.Context;
+using USER.WebApi.Persistence.Repositories;
 using USER.WebApi.Services;
 using USER.WebApi.Services.AutoMapper;
 
@@ -28,12 +28,6 @@ namespace USER.WebApi.CrossCutting.IoC
             services.AddTransient<IUserRepository, UserRepository>();
 
             RegisterValidators(services);
-
-            //services.AddTransient<IAlunoService, AlunoService>();
-            //services.AddTransient<IAlunoRepository, AlunoRepository>();
-
-            //services.AddTransient<ITreinoService, TreinoService>();
-            //services.AddTransient<ITreinoRepository, TreinoRepository>();
         }
 
         private static void RegisterValidators(IServiceCollection services)

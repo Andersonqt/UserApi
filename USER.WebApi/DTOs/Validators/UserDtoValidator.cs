@@ -14,9 +14,8 @@ namespace USER.WebApi.DTOs.Validators
 
         public UserDtoValidator()
         {
-            RuleFor(x => x).Must(HasMissingFields).WithErrorCode(((int)ErrorCode.MF).ToString());
-            RuleFor(x => x.Email).EmailAddress().WithErrorCode(((int)ErrorCode.IF).ToString());
-            //RuleFor(x => x).Must(HasInvalidFields).WithErrorCode(((int)ErrorCode.IF).ToString());
+            RuleFor(x => x).Must(HasMissingFields).WithErrorCode(((int)ErrorCode.MF).ToString()).WithMessage(ErrorCode.MF.GetEnumDescription());
+            RuleFor(x => x.Email).EmailAddress().WithErrorCode(((int)ErrorCode.IF).ToString()).WithMessage(ErrorCode.IF.GetEnumDescription());
         }
         public override ValidationResult Validate(ValidationContext<UserDTO> context)
         {
@@ -37,21 +36,5 @@ namespace USER.WebApi.DTOs.Validators
             failure.ErrorCode = ((int)ErrorCode.IF).ToString();
             return failure;
         }
-
-        //private bool HasInvalidFields(object value)
-        //{
-        //    var typeInfo = value.GetType();
-        //    var propertyInfo = typeInfo.GetProperties();
-
-        //    foreach (var property in propertyInfo)
-        //    {
-        //        if (property != null && property.GetValue(value, null).GetType() != property.GetType())
-        //        {
-        //            return true;
-        //        }
-        //    }
-
-        //    return false;
-        //}
     }
 }

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using USER.WebApi.Domain.Models;
 
-namespace USER.WebApi.Domain.Repository
+namespace USER.WebApi.Domain.Repositories
 {
     public interface IUserRepository : IBaseRepository<User>
     {
         User UserInfo();
         User SignIn(string email, string password);
+        bool CheckEmailExists(string email);
     }
 }

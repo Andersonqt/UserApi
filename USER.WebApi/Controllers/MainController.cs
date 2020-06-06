@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using USER.WebApi.DTOs;
 using static USER.WebApi.Domain.Enums;
 
 namespace USER.WebApi.Controllers
@@ -13,24 +14,28 @@ namespace USER.WebApi.Controllers
     [ApiController]
     public class MainController : ControllerBase
     {
-        //public ActionResult CustomResponse(List<ValidationFailure> errors)
-        //{
-        //    foreach (var item in errors)
-        //    {
-        //        return BadRequest(new
-        //        {
-        //            message = ((ErrorCode)Enum.Parse(typeof(ErrorCode), item.ErrorCode)).GetEnumDescription(),
-        //            errorCode = item.ErrorCode
-        //        });
-        //    }
-        //    return BadRequest("Erro Inesperado");
-        //}
-
         public ActionResult CustomResponse(object obj = null)
         {
             if (obj == null)
             {
                 return Ok(new { message = "Success!" });
+            }
+
+            if (obj is ResponseModel)
+            {
+                var resp = (ResponseModel)obj;
+                if (resp.ErrorCode.HasValue)
+                {
+                    return BadRequest(new
+                    {
+                        errorCode = resp.ErrorCode,
+                        message = resp.Message
+                    });
+                } else
+                {
+                    return Ok(resp.Data);
+                }
+                
             }
 
             if (obj is List<ValidationFailure>)
@@ -39,7 +44,7 @@ namespace USER.WebApi.Controllers
                 {
                     return BadRequest(new
                     {
-                        message = ((ErrorCode)Enum.Parse(typeof(ErrorCode), item.ErrorCode)).GetEnumDescription(),
+                        message = item.ErrorMessage,
                         errorCode = item.ErrorCode
                     });
                 }

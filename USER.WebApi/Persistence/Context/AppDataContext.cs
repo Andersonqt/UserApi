@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using USER.WebApi.Domain.Models;
 
-namespace USER.WebApi.Data.Context
+namespace USER.WebApi.Persistence.Context
 {
     public class AppDataContext : DbContext
     {

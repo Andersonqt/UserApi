@@ -14,7 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using USER.WebApi.CrossCutting.IoC;
-using USER.WebApi.Data.Context;
+using USER.WebApi.Persistence.Context;
 
 namespace USER.WebApi
 {

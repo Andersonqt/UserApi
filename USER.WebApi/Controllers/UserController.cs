@@ -41,15 +41,13 @@ namespace USER.WebApi.Controllers
         }
 
         // POST: api/User
-        [HttpPost]
+        [HttpPost("signup")]
         public ActionResult Post([FromBody] UserDTO user)
         {
             UserDtoValidator validator = new UserDtoValidator();
             ValidationResult result = validator.Validate(user);
             if (!result.IsValid) return CustomResponse(result.Errors);
-
-            _userService.Create(user);
-            return CustomResponse();
+            return CustomResponse(_userService.Create(user));
         }
 
         // PUT: api/User/5

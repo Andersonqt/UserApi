@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using USER.WebApi.Domain.Models;
 
-namespace USER.WebApi.Data.Maps
+namespace USER.WebApi.Persistence.Maps
 {
     public class UserMap : IEntityTypeConfiguration<User>
     {
@@ -19,6 +19,8 @@ namespace USER.WebApi.Data.Maps
             builder.Property(x => x.Email).IsRequired();
             builder.Property(x => x.Password).IsRequired();
             builder.Property(x => x.Created_At).IsRequired();
+
+            builder.HasIndex(x => x.Email).IsUnique();
         }
     }
 }

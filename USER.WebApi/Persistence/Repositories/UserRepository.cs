@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using USER.WebApi.Data.Context;
 using USER.WebApi.Domain.Models;
-using USER.WebApi.Domain.Repository;
+using USER.WebApi.Domain.Repositories;
+using USER.WebApi.Persistence.Context;
 
-namespace USER.WebApi.Repository
+namespace USER.WebApi.Persistence.Repositories
 {
     public class UserRepository : IUserRepository
     {
@@ -16,14 +16,21 @@ namespace USER.WebApi.Repository
         {
             _context = context;
         }
-        public void Create(User entity)
+
+        public bool CheckEmailExists(string email)
+        {
+            return _context.User.AsNoTracking().Where(x => x.Email.Trim().ToLower().Equals(email)).Any();
+        }
+
+        public bool Create(User entity)
         {
             entity.Created_At = DateTime.Now;
             _context.User.Add(entity);
-            _context.SaveChanges();
+            var result = _context.SaveChanges();
+            return result > 0;
         }
 
-        public void Delete(Guid id)
+        public bool Delete(Guid id)
         {
             throw new NotImplementedException();
         }

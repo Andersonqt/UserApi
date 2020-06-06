@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ryslania\\Documents\\Projetos\\UserApi\\USER.WebApi\\USER.WebApi.csproj": {}
+    "E:\\Projetos .NET\\UserApi\\USER.WebApi\\USER.WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ryslania\\Documents\\Projetos\\UserApi\\USER.WebApi\\USER.WebApi.csproj": {
+    "E:\\Projetos .NET\\UserApi\\USER.WebApi\\USER.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ryslania\\Documents\\Projetos\\UserApi\\USER.WebApi\\USER.WebApi.csproj",
+        "projectUniqueName": "E:\\Projetos .NET\\UserApi\\USER.WebApi\\USER.WebApi.csproj",
         "projectName": "USER.WebApi",
-        "projectPath": "C:\\Users\\Ryslania\\Documents\\Projetos\\UserApi\\USER.WebApi\\USER.WebApi.csproj",
-        "packagesPath": "C:\\Users\\Ryslania\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ryslania\\Documents\\Projetos\\UserApi\\USER.WebApi\\obj\\",
+        "projectPath": "E:\\Projetos .NET\\UserApi\\USER.WebApi\\USER.WebApi.csproj",
+        "packagesPath": "C:\\Users\\Anderson\\.nuget\\packages\\",
+        "outputPath": "E:\\Projetos .NET\\UserApi\\USER.WebApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ryslania\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Anderson\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -81,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

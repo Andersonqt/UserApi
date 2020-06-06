@@ -17,7 +17,10 @@ namespace USER.WebApi.Domain
             [Description("Invalid fields")]
             IF = 2,
             [Description("E-mail already exists")]
-            EAE = 3
+            EAE = 3,
+            [Description("Unexpected error")]
+            UNE = 4,
+
         }
         public static string GetEnumDescription(this Enum enumValue)
         {
