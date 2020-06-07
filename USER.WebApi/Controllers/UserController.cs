@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Razor.Language;
-using USER.WebApi.Domain;
-using USER.WebApi.Domain.Models;
 using USER.WebApi.Domain.Services;
 using USER.WebApi.DTOs.User;
 using USER.WebApi.DTOs.Validators;
-using static USER.WebApi.Domain.Enums;
 
 namespace USER.WebApi.Controllers
 {
