@@ -26,13 +26,6 @@ namespace USER.WebApi.CrossCutting.IoC
             services.AddScoped<AppDataContext, AppDataContext>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserRepository, UserRepository>();
-
-            RegisterValidators(services);
-        }
-
-        private static void RegisterValidators(IServiceCollection services)
-        {
-            services.AddTransient<IValidator<UserDTO>, UserDtoValidator>();
         }
     }
 }

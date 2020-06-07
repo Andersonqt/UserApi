@@ -12,32 +12,27 @@ namespace USER.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class MainController : ControllerBase
     {
         public ActionResult CustomResponse(object obj = null)
         {
-            if (obj == null)
-            {
-                return Ok(new { message = "Success!" });
-            }
-
             if (obj is ResponseModel)
             {
                 var resp = (ResponseModel)obj;
-                //resp.Success
-                if (resp.ErrorCode.HasValue)
+                if (!resp.Success)
                 {
                     return BadRequest(new
                     {
+                        success = resp.Success,
                         errorCode = resp.ErrorCode,
                         message = resp.Message
                     });
                 }
                 else
                 {
-                    return Ok(new { resp.Data, message = resp.Message });
+                    return Ok(new { success = resp.Success, data = resp.Data, message = resp.Message });
                 }
-                
             }
 
             if (obj is List<ValidationFailure>)

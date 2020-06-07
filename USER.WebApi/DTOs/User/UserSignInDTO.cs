@@ -11,5 +11,6 @@ namespace USER.WebApi.DTOs.User
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Token { get; set; }
+        public string TokenExpiration { get; set; }
     }
 }

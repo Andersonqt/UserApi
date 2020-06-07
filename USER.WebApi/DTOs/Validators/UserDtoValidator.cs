@@ -16,10 +16,12 @@ namespace USER.WebApi.DTOs.Validators
         {
             RuleFor(x => x).Must(HasMissingFields).WithErrorCode(((int)ErrorCode.MF).ToString()).WithMessage(ErrorCode.MF.GetEnumDescription());
             RuleFor(x => x.Email).EmailAddress().WithErrorCode(((int)ErrorCode.IF).ToString()).WithMessage(ErrorCode.IF.GetEnumDescription());
+            RuleFor(x => x.Phones).Must(HasPhoneMissingFields).When(x => x.Phones.Any()).WithMessage(ErrorCode.MF.GetEnumDescription());
         }
-        public override ValidationResult Validate(ValidationContext<UserDTO> context)
+
+        private bool HasPhoneMissingFields(IEnumerable<PhoneDTO> phones)
         {
-            return context == null ? new ValidationResult(new[] { Failure() }) : base.Validate(context);
+            return !phones.Any(x => !x.Area_Code.HasValue || !x.Number.HasValue || string.IsNullOrEmpty(x.Country_Code));
         }
 
         private bool HasMissingFields(UserDTO userDTO)
@@ -30,10 +32,16 @@ namespace USER.WebApi.DTOs.Validators
                 && !string.IsNullOrEmpty(userDTO.Email);
         }
 
+        public override ValidationResult Validate(ValidationContext<UserDTO> context)
+        {
+            return context == null || context.InstanceToValidate == null ? new ValidationResult(new[] { Failure() }) : base.Validate(context);
+        }
+
         private ValidationFailure Failure()
         {
             var failure = new ValidationFailure("", "");
             failure.ErrorCode = ((int)ErrorCode.IF).ToString();
+            failure.ErrorMessage = ErrorCode.IF.GetEnumDescription();
             return failure;
         }
     }

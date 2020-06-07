@@ -20,11 +20,6 @@ namespace USER.WebApi.Persistence.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
-            foreach (var item in modelBuilder.Model.GetEntityTypes().SelectMany(x => x.GetForeignKeys()))
-            {
-                item.DeleteBehavior = DeleteBehavior.Restrict;
-            }
         }
     }
 }

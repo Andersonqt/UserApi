@@ -7,8 +7,7 @@ namespace USER.WebApi.DTOs
 {
     public class ResponseModel
     {
-        public ResponseModel() { }
-        public ResponseModel(bool success, object response = null, int? errorCode = null, string message = null)
+        public ResponseModel(bool success, object response = null, string message = null, int? errorCode = null)
         {
             Success = success;
             Data = response;
@@ -16,9 +15,9 @@ namespace USER.WebApi.DTOs
             Message = message;
         }
 
-        public object Data { get; set; }
-        public bool Success { get; set; }
-        public int? ErrorCode { get; set; }
-        public string Message { get; set; }
+        public object Data { get; private set; }
+        public bool Success { get; private set; }
+        public int? ErrorCode { get; private set; }
+        public string Message { get; private set; }
     }
 }

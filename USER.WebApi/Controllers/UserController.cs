@@ -27,21 +27,25 @@ namespace USER.WebApi.Controllers
             _userService = userService;
         }
 
-        // GET: api/User
         [HttpGet("me")]
         public ActionResult Get()
         {
-            return CustomResponse(_userService.UserInfo());
+            var userId = new Guid(User.Identity.Name);
+            return CustomResponse(_userService.UserInfo(userId));
         }
 
-        // GET: api/User/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        [HttpGet]
+        public ActionResult GetUsers()
+        {
+            return CustomResponse(_userService.AllUsers());
+        }
 
-        // POST: api/User
+        [HttpGet("{id}")]
+        public ActionResult GetById(Guid id)
+        {
+            return CustomResponse(_userService.GetById(id));
+        }
+
         [HttpPost("signup")]
         [AllowAnonymous]
         public ActionResult Post([FromBody] UserDTO user)
@@ -52,9 +56,9 @@ namespace USER.WebApi.Controllers
             return CustomResponse(_userService.Create(user));
         }
 
-        [HttpPost("/signin")]
+        [HttpPost("signin")]
         [AllowAnonymous]
-        public ActionResult Login([FromBody] UserLoginDTO user)
+        public ActionResult Authenticate([FromBody] UserLoginDTO user)
         {
             UserLoginDtoValidator validator = new UserLoginDtoValidator();
             ValidationResult result = validator.Validate(user);
@@ -62,16 +66,10 @@ namespace USER.WebApi.Controllers
             return CustomResponse(_userService.SignIn(user.Email, user.Password));
         }
 
-        //// PUT: api/User/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        // DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        [HttpDelete("{id}")]
+        public ActionResult Delete(Guid id)
+        {
+            return CustomResponse(_userService.DeleteUser(id));
+        }
     }
 }

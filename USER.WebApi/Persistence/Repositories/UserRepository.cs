@@ -32,7 +32,10 @@ namespace USER.WebApi.Persistence.Repositories
 
         public bool Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var user = GetById(id);
+            _context.User.Remove(user);
+            var result = _context.SaveChanges();
+            return result > 0;
         }
 
         public User SignIn(string email, string password)
@@ -52,11 +55,20 @@ namespace USER.WebApi.Persistence.Repositories
             _context.SaveChanges();
         }
 
-        public User UserInfo()
+        public User UserInfo(Guid id)
         {
-            var users = _context.User.Include(x => x.Phones).ToList();
-            var user = _context.User.Include(x => x.Phones).FirstOrDefault();
+            var user = _context.User.Include(x => x.Phones).AsNoTracking().Where(x => x.Id.Equals(id)).FirstOrDefault();
             return user;
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            return _context.User.Include(x => x.Phones).AsNoTracking().ToList();
+        }
+
+        public User GetById(Guid id)
+        {
+            return _context.User.Include(x => x.Phones).AsNoTracking().Where(x => x.Id.Equals(id)).FirstOrDefault();
         }
     }
 }

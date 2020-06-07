@@ -8,7 +8,7 @@ namespace USER.WebApi.Domain.Repositories
 {
     public interface IUserRepository : IBaseRepository<User>
     {
-        User UserInfo();
+        User UserInfo(Guid id);
         User SignIn(string email, string password);
         bool CheckEmailExists(string email);
     }

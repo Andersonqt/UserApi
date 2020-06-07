@@ -9,5 +9,7 @@ namespace USER.WebApi.Domain.Repositories
     {
         bool Create(TEntity entity);
         bool Delete(Guid id);
+        IEnumerable<TEntity> GetAll();
+        TEntity GetById(Guid id);
     }
 }
