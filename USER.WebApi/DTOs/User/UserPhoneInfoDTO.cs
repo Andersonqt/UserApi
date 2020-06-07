@@ -7,7 +7,7 @@ namespace USER.WebApi.DTOs.User
 {
     public class UserPhoneInfoDTO
     {
-        public int Number { get; set; }
+        public long Number { get; set; }
         public int Area_Code { get; set; }
         public string Country_Code { get; set; }
     }

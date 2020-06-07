@@ -54,6 +54,10 @@ namespace USER.WebApi.Services
         public ResponseModel UserInfo(Guid id)
         {
             var user = _userRespository.UserInfo(id);
+            if (user == null)
+            {
+                return new ResponseModel(true, message: "User not found or removed, please login again.");
+            }
             var userMap = _mapper.Map<UserInfoDTO>(user);
             return new ResponseModel(true, userMap);
         }
